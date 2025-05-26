@@ -302,7 +302,7 @@ Transform.translate(
 }
 
 ### 21.	Hot Reload dan seluruh adegan interaktif bisa di-zoom dan di-pan dengan mudah.
-Screenshot_20250526_234651
+![Screenshot_20250526_234651](https://github.com/user-attachments/assets/84ef316d-bfd7-4eb0-abe8-cd17ee370fd3)
 ![Screenshot_20250526_234710](https://github.com/user-attachments/assets/15209cdf-68df-4e15-bdf1-62080c498a7e)
 ![Screenshot_20250526_234716](https://github.com/user-attachments/assets/84705eab-da70-48f6-bf79-7006fbc13729)
 ![Screenshot_20250526_234720](https://github.com/user-attachments/assets/27d2092f-f619-46f2-bd2f-503a2cf11cea)
