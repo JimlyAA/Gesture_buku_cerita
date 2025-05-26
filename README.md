@@ -3,9 +3,9 @@
 
 ### 2. Di dalam lib buat folder pages di dalamnya terdapat 3 files:
 ![image](https://github.com/user-attachments/assets/445b0429-8225-4294-8038-21ec3fde84e0)
-- a.	title_page.dart
-- b.	scene_page.dart
-- c.	end_page.dart
+- 	title_page.dart
+- 	scene_page.dart
+- 	end_page.dart
 
 ### 3.	Buka lib/main.dart dan ganti isinya dengan kode berikut untuk membuat struktur PageView:
 ![image](https://github.com/user-attachments/assets/01d84ded-65cd-44e3-8292-e88fef2e2d3e)
