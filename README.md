@@ -119,7 +119,7 @@ class _InteractiveScenePageState extends State<InteractiveScenePage> {
           // Latar Belakang
           Container(color: const Color(0xff303952), child: const Center(child: Text("🪐", style: TextStyle(fontSize: 200, color: Colors.white24)))),
 
-          // Elemen-elemen adegan akan kita tambahkan di sini
+   // Elemen-elemen adegan akan kita tambahkan di sini
         ],
       ),
     );
