@@ -58,7 +58,7 @@ class StorybookHome extends StatelessWidget {
 }
 
 ### 4.	Untuk mencegah error, isi setiap file di folder pages dengan StatelessWidget boilerplate sederhana. Contoh untuk title_page.dart
-![image](https://github.com/user-attachments/assets/3ce9446b-0e8c-45e9-82e9-6dadd599effc)
+![image](https://github.com/user-attachments/assets/c977bbb5-1089-4e20-bac3-6e9508ffce0e)
 
 // lib/pages/title_page.dart
 import 'package:flutter/material.dart';
@@ -85,13 +85,10 @@ class TitlePage extends StatelessWidget {
 }
 
 ### 5.	Lakukan hal yang sama untuk scene_page.dart dan end_page.dart, cukup tampilkan teks judul halaman
-scene_page.dart
-![image](https://github.com/user-attachments/assets/378e56ce-5470-4c3f-a117-fb2f9065624c)
 
-end_page.dart
-![image](https://github.com/user-attachments/assets/e1800620-d2ec-4116-95c4-3f63a9818835)
 
-7.	Fokus pada lib/pages/scene_page.dart → ganti isinya dengan kerangka StatefulWidget
+### 6.	Fokus pada lib/pages/scene_page.dart → ganti isinya dengan kerangka StatefulWidget
+![image](https://github.com/user-attachments/assets/bec48544-0b1f-482f-996b-6d2e0ccf1441)
 
 // lib/pages/scene_page.dart
 import 'package:flutter/material.dart';
@@ -129,7 +126,8 @@ class _InteractiveScenePageState extends State<InteractiveScenePage> {
   }
 }
 
-8.	Tambahkan Astronaut & Balon Dialog (Double Tap). Di dalam Stack, tambahkan Positioned untuk astronaut
+### 7.	Tambahkan Astronaut & Balon Dialog (Double Tap). Di dalam Stack, tambahkan Positioned untuk astronaut
+![image](https://github.com/user-attachments/assets/dc907281-6bb9-48da-958a-f95a44b4b1b6)
 
 // Di dalam children dari Stack:
 // Astronaut (Double Tap)
@@ -157,7 +155,8 @@ if (_isDialogueVisible)
     ),
   ),
 
-9.	Tambahkan Peti & Petunjuk (Long Press). Di dalam Stack, tambahkan Positioned untuk peti.
+### 8.	Tambahkan Peti & Petunjuk (Long Press). Di dalam Stack, tambahkan Positioned untuk peti.
+![image](https://github.com/user-attachments/assets/cb13d4c4-a8bd-464b-96aa-6feed5f90217)
 
 // Di dalam children dari Stack:
 // Peti (Long Press)
@@ -184,7 +183,8 @@ Positioned(
   child: Text(_chestHint, style: const TextStyle(color: Colors.white, fontStyle: FontStyle.italic)),
 ),
 
-10.	Tambahkan Kunci & Logika Drag-and-Drop. Di dalam Stack, tambahkan Positioned untuk kunci. Ini bagian paling kompleks
+### 9.	Tambahkan Kunci & Logika Drag-and-Drop. Di dalam Stack, tambahkan Positioned untuk kunci. Ini bagian paling kompleks
+![image](https://github.com/user-attachments/assets/aa72f8e7-72a5-40e8-b828-f6a1403fa1b3)
 
 // Di dalam children dari Stack:
 // Kunci (Drag & Drop)
@@ -221,9 +221,9 @@ Positioned(
   ),
 ),
 
-11.	Hot Reload & Uji Coba: Coba semua interaksi: double tap astronaut, long press peti, dan geser kunci ke peti.
-12.	Efek Visual (InkWell) → Buka lib/pages/title_page.dart
-13.	Bungkus ElevatedButton dengan Card dan InkWell untuk efek yang lebih bagus. Ganti ElevatedButton dengan kode berikut:
+
+### 10.	Efek Visual (InkWell) → Buka lib/pages/title_page.dart Bungkus ElevatedButton dengan Card dan InkWell untuk efek yang lebih bagus. Ganti ElevatedButton dengan kode berikut:
+![image](https://github.com/user-attachments/assets/e453b6ff-ced4-4abc-8cb9-9e3bf6d9eb30)
 
 // Di dalam title_page.dart, ganti ElevatedButton dengan ini:
 Card(
@@ -238,65 +238,62 @@ Card(
   ),
 ),
 
-14.	Kita akan membuat latar belakang bisa digeser sedikit secara horizontal atau vertikal (seperti melihat lewat teleskop), tapi tidak keduanya sekaligus.
-15.	Kembali ke lib/pages/scene_page.dart
-16.	Kita modifikasi Container latar belakang. Pertama, tambahkan Offset untuk posisi background di State
+### 11.	Kita akan membuat latar belakang bisa digeser sedikit secara horizontal atau vertikal (seperti melihat lewat teleskop), tapi tidak keduanya sekaligus.
+### 12.	Kembali ke lib/pages/scene_page.dart
+### 13.	Kita modifikasi Container latar belakang. Pertama, tambahkan Offset untuk posisi background di State
+![image](https://github.com/user-attachments/assets/c5faa5e1-380d-4339-8f44-5a6e2cde5d05)
 
 // Tambahkan variabel state baru
 Offset _backgroundOffset = Offset.zero;
 
-17.	Bungkus Container latar belakang dengan RawGestureDetector dan Transform
+### 14.	Bungkus Container latar belakang dengan RawGestureDetector dan Transform
+![image](https://github.com/user-attachments/assets/7266a605-47e7-477a-aaf3-07482fa43c3e)
 
 // Ganti Container latar belakang dengan kode ini:
 Transform.translate(
-  offset: _backgroundOffset,
-  child: RawGestureDetector(
-    gestures: <Type, GestureRecognizerFactory>{
-      HorizontalDragGestureRecognizer: GestureRecognizerFactoryWithHandlers<HorizontalDragGestureRecognizer>(
-        () => HorizontalDragGestureRecognizer(),
-        (instance) {
-          instance.onUpdate = (details) {
-            setState(() {
-              // Batasi pergerakan agar tidak terlalu jauh
-              _backgroundOffset += Offset(details.delta.dx, 0);
-            });
-          };
-        },
-      ),
-      VerticalDragGestureRecognizer: GestureRecognizerFactoryWithHandlers<VerticalDragGestureRecognizer>(
-        () => VerticalDragGestureRecognizer(),
-        (instance) {
-          instance.onUpdate = (details) {
-            setState(() {
-              _backgroundOffset += Offset(0, details.delta.dy);
-            });
-          };
-        },
-      ),
-    },
-    child: Container(
-      width: MediaQuery.of(context).size.width * 1.2, // Buat BG lebih besar agar ada ruang gerak
-      height: MediaQuery.of(context).size.height * 1.2,
-      color: const Color(0xff303952),
-      child: const Center(child: Text("🪐", style: TextStyle(fontSize: 200, color: Colors.white24))),
-    ),
-  ),
-),
+              offset: _backgroundOffset,
+              child: RawGestureDetector(
+                // Mendaftarkan dua recognizer yang bersaing: Horizontal & Vertikal
+                gestures: <Type, GestureRecognizerFactory>{
+                  HorizontalDragGestureRecognizer: GestureRecognizerFactoryWithHandlers<HorizontalDragGestureRecognizer>(
+                        () => HorizontalDragGestureRecognizer(), (instance) {
+                    instance.onUpdate = (details) => setState(() => _backgroundOffset += Offset(details.delta.dx, 0));
+                  },
+                  ),
+                  VerticalDragGestureRecognizer: GestureRecognizerFactoryWithHandlers<VerticalDragGestureRecognizer>(
+                        () => VerticalDragGestureRecognizer(), (instance) {
+                    instance.onUpdate = (details) => setState(() => _backgroundOffset += Offset(0, details.delta.dy));
+                  },
+                  ),
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 1.5,
+                  height: MediaQuery.of(context).size.height * 1.5,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage("https://www.nasa.gov/wp-content/uploads/2023/11/iss069e005527-1.jpg"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
+            ),
 
-18.	Ujicoba: Coba geser latar belakang. Kalian hanya bisa menggesernya di satu sumbu (horizontal atau vertikal) dalam satu waktu.
-19.	Fungsionalitas Zoom dengan InteractiveViewer
-20.	Di lib/pages/scene_page.dart, bungkus seluruh Stack dengan widget InteractiveViewer
+
+### 15. Di lib/pages/scene_page.dart, bungkus seluruh Stack dengan widget InteractiveViewer
+![image](https://github.com/user-attachments/assets/0e1d3067-dc1a-4a07-a2a2-ab2b58cdae68)
 
 // Di build method scene_page.dart
-@override
-Widget build(BuildContext context) {
-  return Scaffold(
-    body: InteractiveViewer( // <--- WIDGET DITAMBAHKAN DI SINI
-      boundaryMargin: const EdgeInsets.all(double.infinity),
-      minScale: 1.0,
-      maxScale: 3.0,
-      child: Stack(
-        children: [
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // InteractiveViewer untuk mengaktifkan fungsionalitas Pinch-to-Zoom
+      body: InteractiveViewer(
+        boundaryMargin: const EdgeInsets.all(double.infinity),
+        minScale: 0.5,
+        maxScale: 3.0,
+        child: Stack(
+          children: [
           // ... semua widget di dalam Stack tetap sama ...
         ],
       ),
@@ -304,4 +301,8 @@ Widget build(BuildContext context) {
   );
 }
 
-21.	Hot Reload dan seluruh adegan interaktif bisa di-zoom dan di-pan dengan mudah.
+### 21.	Hot Reload dan seluruh adegan interaktif bisa di-zoom dan di-pan dengan mudah.
+Screenshot_20250526_234651
+![Screenshot_20250526_234710](https://github.com/user-attachments/assets/15209cdf-68df-4e15-bdf1-62080c498a7e)
+![Screenshot_20250526_234716](https://github.com/user-attachments/assets/84705eab-da70-48f6-bf79-7006fbc13729)
+![Screenshot_20250526_234720](https://github.com/user-attachments/assets/27d2092f-f619-46f2-bd2f-503a2cf11cea)
